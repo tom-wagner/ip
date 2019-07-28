@@ -1,7 +1,7 @@
-import random
+# START TIME:
 
 
-class Tree():
+class Tree:
     def __init__(self, tree):
         self.tree = tree
 
@@ -59,5 +59,10 @@ depth_first = [0, 8, 1, 6, 9, 5, 7, 0, 4, 1]
 
 breadth_first = [5, 9, 1, 8, 6, 4, 0, 1, 7, 0]
 
-print(my_tree.depth_first_traversal() == depth_first)
-print(my_tree.breadth_first_traversal() == breadth_first)
+print('DFS', my_tree.depth_first_traversal() == depth_first)
+print('BFS', my_tree.breadth_first_traversal() == breadth_first)
+print('has returns true correctly', my_tree.has(7))
+print('has returns true correctly', my_tree.has(8))
+print('has returns false correctly', my_tree.has('BILL'))
+
+# END TIME:

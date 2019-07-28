@@ -1,3 +1,5 @@
+# START TIME:
+
 from helpers.thieves_solution import thieves_solution
 
 # THIEVES KNAPSACK
@@ -24,6 +26,4 @@ ans = thieves_solution(items, MAXWT)
 
 print(ans == thieves(items, MAXWT))
 
-
-
-
+# END TIME:

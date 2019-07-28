@@ -1,4 +1,7 @@
-class Queue():
+# START TIME:
+
+
+class Queue:
     def __init__(self):
         self.queue = []
 
@@ -36,3 +39,5 @@ print(q.deque() == 27)
 print(q.deque() == 'EMPTY')
 
 print(q.size == 0)
+
+# END TIME:

@@ -1,4 +1,7 @@
-class Stack():
+# START TIME:
+
+
+class Stack:
     def __init__(self):
         self.stack = []
 
@@ -36,3 +39,6 @@ print(s.pop() == 12)
 print(s.pop() == 'EMPTY')
 
 print(s.size == 0)
+
+
+# END TIME:
