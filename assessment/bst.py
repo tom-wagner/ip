@@ -3,7 +3,7 @@ import binarytree
 
 class BST():
     def __init__(self, arr):
-        self.bst
+        pass
 
     def add(self, item):
         pass
