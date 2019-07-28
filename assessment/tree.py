@@ -1,4 +1,6 @@
-# START TIME:
+# START TIME: 4:19pm
+
+from collections import deque
 
 
 class Tree:
@@ -6,13 +8,42 @@ class Tree:
         self.tree = tree
 
     def breadth_first_traversal(self):
-        pass
+        res = []
+
+        q = deque()
+        q.append(self.tree)
+
+        while q:
+            curr = q.popleft()
+            res.append(curr['v'])
+            for child in curr['children']:
+                q.append(child)
+
+        return res
 
     def depth_first_traversal(self):
-        pass
+        res = []
 
-    def has(self):
-        pass
+        def recurse(tree):
+            nonlocal res
+            res.append(tree['v'])
+
+            for child in tree['children']:
+                recurse(child)
+
+        recurse(self.tree)
+        return res
+
+    def has(self, x):
+        def recurse(tree):
+            if tree['v'] == x:
+                return True
+            for child in tree['children']:
+                if recurse(child):
+                    return True
+            return False
+
+        return recurse(self.tree)
 
 
 t = {
@@ -55,14 +86,14 @@ print(t)
 
 my_tree = Tree(t)
 
-depth_first = [0, 8, 1, 6, 9, 5, 7, 0, 4, 1]
+depth_first_pre = [5, 9, 8, 0, 6, 1, 1, 4, 7, 0]
 
 breadth_first = [5, 9, 1, 8, 6, 4, 0, 1, 7, 0]
 
-print('DFS', my_tree.depth_first_traversal() == depth_first)
+print('DFS', my_tree.depth_first_traversal() == depth_first_pre)
 print('BFS', my_tree.breadth_first_traversal() == breadth_first)
 print('has returns true correctly', my_tree.has(7))
 print('has returns true correctly', my_tree.has(8))
-print('has returns false correctly', my_tree.has('BILL'))
+print('has returns false correctly', my_tree.has('BILL') is False)
 
-# END TIME:
+# END TIME: 4:28pm
