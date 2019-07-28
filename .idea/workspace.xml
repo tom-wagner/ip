@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7d51cd6-4f60-409f-94ec-f7ecf0865ce9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assessment/bst.py" beforeDir="false" afterPath="$PROJECT_DIR$/assessment/bst.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assessment/queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/assessment/queue.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +14,7 @@
     <SUITE FILE_PATH="coverage/ip$bst.coverage" NAME="bst Coverage Results" MODIFIED="1564343838067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assessment" />
     <SUITE FILE_PATH="coverage/ip$islands.coverage" NAME="islands Coverage Results" MODIFIED="1563754805105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ip$bfs.coverage" NAME="bfs Coverage Results" MODIFIED="1563927985628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ip$queue.coverage" NAME="queue Coverage Results" MODIFIED="1564338590597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assessment" />
+    <SUITE FILE_PATH="coverage/ip$queue.coverage" NAME="queue Coverage Results" MODIFIED="1564344232354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assessment" />
     <SUITE FILE_PATH="coverage/ip$dp.coverage" NAME="dp Coverage Results" MODIFIED="1564335641262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assessment" />
     <SUITE FILE_PATH="coverage/ip$linked_list.coverage" NAME="linked_list Coverage Results" MODIFIED="1563322446503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ip$tree_helper.coverage" NAME="tree_helper Coverage Results" MODIFIED="1564336529422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/helpers" />
@@ -42,25 +41,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="77" />
+          <entry key="py" value="78" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="76" />
+          <entry key="Python" value="77" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="16" />
-          <entry key="py" value="15129" />
+          <entry key="py" value="15463" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Python" value="15129" />
+          <entry key="Python" value="15463" />
         </counts>
       </usages-collector>
     </session>
@@ -68,18 +67,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assessment/bst.py">
+        <entry file="file://$PROJECT_DIR$/assessment/queue.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="168" column="19" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="19" />
-              <folding>
-                <marker date="1564343845703" expanded="true" signature="65:171" ph="..." />
-                <marker date="1564343845703" expanded="true" signature="181:186" ph="..." />
-                <marker date="1564343845703" expanded="true" signature="301:355" ph="..." />
-                <marker date="1564343845703" expanded="true" signature="349:355" ph="..." />
-                <marker date="1564343845703" expanded="true" signature="2337:2343" ph="..." />
-                <marker date="1564343845703" expanded="true" signature="2363:2635" ph="..." />
-              </folding>
+            <state relative-caret-position="598">
+              <caret line="66" column="19" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -122,9 +113,9 @@
         <option value="$PROJECT_DIR$/assessment/linked_list.py" />
         <option value="$PROJECT_DIR$/assessment/tree.py" />
         <option value="$PROJECT_DIR$/assessment/stack.py" />
-        <option value="$PROJECT_DIR$/assessment/queue.py" />
         <option value="$PROJECT_DIR$/assessment/thieves_knapsack.py" />
         <option value="$PROJECT_DIR$/assessment/bst.py" />
+        <option value="$PROJECT_DIR$/assessment/queue.py" />
       </list>
     </option>
   </component>
@@ -203,7 +194,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.bst">
+  <component name="RunManager" selected="Python.queue">
     <configuration name="bst" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ip" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -323,8 +314,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.bst" />
         <item itemvalue="Python.queue" />
+        <item itemvalue="Python.bst" />
         <item itemvalue="Python.tree" />
         <item itemvalue="Python.tree_helper" />
         <item itemvalue="Python.dp" />
@@ -487,7 +478,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assessment/bst.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
+        <state relative-caret-position="599">
           <caret line="168" column="19" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="19" />
           <folding>
             <marker date="1564343845703" expanded="true" signature="65:171" ph="..." />
@@ -528,13 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assessment/queue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assessment/stack.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="658">
@@ -546,6 +530,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assessment/queue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="66" column="19" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
         </state>
       </provider>
     </entry>
