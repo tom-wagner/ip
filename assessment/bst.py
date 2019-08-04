@@ -2,7 +2,7 @@
 
 
 class BST:
-    def __init__(self, arr):
+    def __init__(self, array):
         pass
 
     def add(self, item):
@@ -26,7 +26,6 @@ class BST:
     def breadth_first(self):
         pass
 
-
 arr = [63, 84, 57, 47, 50, 99, 59, 16, 39, 86, 2, 91, 12, 97]
 
 b = BST(arr)
@@ -42,10 +41,11 @@ try:
 except Exception:
     print('properly rejected 63')
 
-ino = [12, 2, 16, 37, 39, 47, 50, 57, 59, 63, 87, 72, 84, 97, 91, 86, 99, 123]
-pre = [63, 57, 47, 16, 2, 12, 39, 37, 50, 59, 84, 72, 87, 99, 86, 91, 97, 123]
-pos = [12, 2, 37, 39, 16, 50, 47, 59, 57, 87, 72, 97, 91, 86, 123, 99, 84, 63]
-bfs = [63, 57, 84, 47, 59, 72, 99, 16, 50, 87, 86, 123, 2, 39, 91, 12, 37, 97]
+
+ino = [2, 12, 16, 37, 39, 47, 50, 57, 59, 63, 72, 84, 86, 87, 91, 97, 99, 123]
+pre = [63, 57, 47, 16, 2, 12, 39, 37, 50, 59, 84, 72, 99, 86, 91, 87, 97, 123]
+pos = [12, 2, 37, 39, 16, 50, 47, 59, 57, 72, 87, 97, 91, 86, 123, 99, 84, 63]
+bfs = [63, 57, 84, 47, 59, 72, 99, 16, 50, 86, 123, 2, 39, 91, 12, 37, 87, 97]
 
 print('in-order correct', ino == b.in_order())
 print('pre-order correct', pre == b.pre_order())
@@ -56,6 +56,6 @@ print('breadth first correct', bfs == b.breadth_first())
 print('largest smaller than correct', b.largest_smaller_than_x(77) == 72)
 
 # check that it returns proper value
-print('smallest larger than correct', b.smallest_larger_than_x(43) == 39)
+print('smallest larger than correct', b.smallest_larger_than_x(43) == 47)
 
-# END TIME:
+# END TIME: 7:57am
