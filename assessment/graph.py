@@ -1,39 +1,64 @@
 import collections
 
-# START TIME:
+# START TIME: 7:46pm
+
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.edges = set()
 
 
 class Graph:
     def __init__(self):
-        pass
+        self.graph = {}
 
     @property
     def size(self):
-        return ''
+        return len(self.graph)
 
     def add_vertex(self, v):
-        pass
+        self.graph[v] = Node(v)
 
     def remove_vertex(self, v):
-        pass
+        for edge in self.graph[v].edges:
+            self.graph[edge].edges.remove(v)
+        del self.graph[v]
 
     def add_edge(self, f, t):
-        pass
+        self.graph[f].edges.add(t)
+        self.graph[t].edges.add(f)
 
     def contains(self, val):
-        pass
+        return val in self.graph
 
     def get_neighbors(self, val):
-        pass
+        return self.graph[val].edges
 
     def common_neighbors(self, val_one, val_two):
-        pass
+        common_neighbors_incl_self = self.graph[val_one].edges & self.graph[val_two].edges
+        return common_neighbors_incl_self - {val_one, val_two}
 
     def unique_neighbors(self, val_one, val_two):
-        pass
+        uniq_neighbors_incl_self = self.graph[val_one].edges ^ self.graph[val_two].edges
+        return uniq_neighbors_incl_self - {val_one,val_two}
 
     def shortest_path(self, val_one, val_two):
-        pass
+        visited = {val_one}
+        q = collections.deque([[val_one, [val_one]]])
+
+        while q:
+            curr_edge, curr_path = q.popleft()
+            visited.add(curr_edge)
+
+            if curr_edge == val_two:
+                return curr_path
+
+            for edge in self.graph[curr_edge].edges:
+                if edge not in visited:
+                    q.append([edge, curr_path + [edge]])
+
+        return 'No path'
 
 
 g = Graph()
@@ -62,4 +87,4 @@ print('3 no longer neighbor of 2', g.get_neighbors(2) == {1})
 print('3 no longer neighbor of 1', g.get_neighbors(4) == {1})
 print('no path anymore', g.shortest_path(5, 3) == 'No path')
 
-# END TIME:
+# END TIME: 8:03pm
