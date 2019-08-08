@@ -5,15 +5,8 @@ class Solution:
         if abs(len(s) - len(t)) == 1:
             insert_count = 0
             longer, shorter = (s, t) if len(s) > len(t) else (t, s)
-
-            if len(shorter) == 0:
-                return True
-
             for idx, char in enumerate(longer):
-                if idx == len(longer) - 1:
-                    if insert_count == 0 or longer[idx] != shorter[idx - insert_count]:
-                        insert_count += 1
-                elif shorter[idx - insert_count] != longer[idx]:
+                if shorter[idx - insert_count] != longer[idx]:
                     insert_count += 1
 
                 # short circuit
@@ -25,4 +18,4 @@ class Solution:
 
 s = Solution()
 
-print(s.isOneEditDistance('a', 'ac'))
+print(s.isOneEditDistance('a', ''))
