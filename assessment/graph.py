@@ -1,39 +1,66 @@
 import collections
 
-# START TIME:
+# START TIME: 7:38am
 
 
 class Graph:
     def __init__(self):
-        pass
+        self.v = set()
+        self.e = {}
 
     @property
     def size(self):
-        return ''
+        return len(self.v)
 
     def add_vertex(self, v):
-        pass
+        if v not in self.v:
+            self.v.add(v)
+            self.e[v] = set()
 
     def remove_vertex(self, v):
-        pass
+        edges_for_val = self.e[v]
+        for val in edges_for_val:
+            self.e[val].remove(v)
+
+        self.v.remove(v)
+        del self.e[v]
 
     def add_edge(self, f, t):
-        pass
+        self.e[f].add(t)
+        self.e[t].add(f)
 
     def contains(self, val):
-        pass
+        return val in self.v
 
     def get_neighbors(self, val):
-        pass
+        return self.e[val]
 
     def common_neighbors(self, val_one, val_two):
-        pass
+        common_neighbors_incl_self = self.e[val_one] & self.e[val_two]
+        return common_neighbors_incl_self - {val_one, val_two}
 
     def unique_neighbors(self, val_one, val_two):
-        pass
+        unique_neighbors_incl_self = self.e[val_one] ^ self.e[val_two]
+        return unique_neighbors_incl_self - {val_one, val_two}
 
     def shortest_path(self, val_one, val_two):
-        pass
+        visited = set()
+        q = collections.deque([dict(v=val_one, path=[])])
+
+        while q:
+            curr = q.popleft()
+            curr_val, curr_path = curr['v'], curr['path']
+            visited.add(curr_val)
+            curr_path.append(curr_val)
+
+            if curr_val == val_two:
+                return curr_path
+
+            for edge in self.e[curr_val]:
+                if edge not in visited:
+                    q.append(dict(v=edge, path=curr_path[:]))
+
+        return 'No path'
 
 
 g = Graph()
@@ -56,10 +83,12 @@ print('1 has 2 and 4 as common neighbors with 3', g.common_neighbors(1, 3) == {2
 print('path from 5 to 3 should go through 1 -> 4 or 1 -> 2', g.shortest_path(5, 3) == [5, 1, 4, 3] or g.shortest_path(5, 3) == [5, 1, 2, 3])
 print('unique neighbors of 1 and 4 is {5, 2, 3}', g.unique_neighbors(1, 4) == {5, 2, 3})
 
+# print(g.shortest_path(5, 3))
+
 g.remove_vertex(3)
 
 print('3 no longer neighbor of 2', g.get_neighbors(2) == {1})
 print('3 no longer neighbor of 1', g.get_neighbors(4) == {1})
 print('no path anymore', g.shortest_path(5, 3) == 'No path')
 
-# END TIME:
+# END TIME: 8:06am
