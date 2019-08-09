@@ -1,30 +1,103 @@
-# START TIME:
+from collections import deque
+
+# START TIME: 7:16am
+
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
 
 
 class BST:
     def __init__(self, array):
-        pass
+        self.tree = None
+        self.init(array)
 
-    def add(self, item):
-        pass
+    def init(self, array):
+        for val in array:
+            self.add(val)
+
+    def add(self, item, should_add_to_tree: bool = True, should_return_branch: bool = False):
+        if not self.tree:
+            self.tree = Node(item)
+            return
+        branch = []
+        curr = self.tree
+        while curr:
+            curr_val, left, right = curr.val, curr.left, curr.right
+            branch.append(curr_val)
+            if item < curr_val:
+                if not curr.left:
+                    if should_add_to_tree:
+                        curr.left = Node(item)
+                    return branch if should_return_branch else None
+                curr = left
+            elif item > curr_val:
+                if not curr.right:
+                    if should_add_to_tree:
+                        curr.right = Node(item)
+                    return branch if should_return_branch else None
+                curr = right
+            else:
+                raise Exception
 
     def largest_smaller_than_x(self, x):
-        pass
+        branch = self.add(x, should_return_branch=True)
+        return max([val for val in branch if val < x])
 
     def smallest_larger_than_x(self, x):
-        pass
+        branch = self.add(x, should_return_branch=True)
+        return min([val for val in branch if val > x])
+
+    def depth_first_traversal(self, traversal_type):
+        res = []
+
+        def recurse(tree):
+            if not tree:
+                return
+
+            if traversal_type == 'PRE_ORDER':
+                res.append(tree.val)
+
+            recurse(tree.left)
+
+            if traversal_type == 'IN_ORDER':
+                res.append(tree.val)
+
+            recurse(tree.right)
+
+            if traversal_type == 'POST_ORDER':
+                res.append(tree.val)
+
+        recurse(self.tree)
+        return res
 
     def in_order(self):
-        pass
+        return self.depth_first_traversal('IN_ORDER')
 
     def pre_order(self):
-        pass
+        return self.depth_first_traversal('PRE_ORDER')
 
     def post_order(self):
-        pass
+        return self.depth_first_traversal('POST_ORDER')
 
     def breadth_first(self):
-        pass
+        q = deque([self.tree])
+        res = []
+
+        while q:
+            curr = q.popleft()
+            val, left, right = curr.val, curr.left, curr.right
+            res.append(val)
+            if left:
+                q.append(left)
+            if right:
+                q.append(right)
+
+        return res
+
 
 arr = [63, 84, 57, 47, 50, 99, 59, 16, 39, 86, 2, 91, 12, 97]
 
@@ -58,4 +131,4 @@ print('largest smaller than correct', b.largest_smaller_than_x(77) == 72)
 # check that it returns proper value
 print('smallest larger than correct', b.smallest_larger_than_x(43) == 47)
 
-# END TIME: 7:57am
+# END TIME: 7:37am
