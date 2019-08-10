@@ -1,4 +1,6 @@
-# START TIME:
+from collections import deque
+
+# START TIME: 6:33pm
 
 
 class Tree:
@@ -6,13 +8,29 @@ class Tree:
         self.tree = tree
 
     def breadth_first_traversal(self):
-        pass
+        q = deque([self.tree])
+        res = []
+
+        while q:
+            curr = q.popleft()
+            res.append(curr['v'])
+            q.extend(curr['children'])
+
+        return res
 
     def depth_first_traversal(self):
-        pass
+        res = []
 
-    def has(self):
-        pass
+        def recurse(node):
+            for child in node['children']:
+                recurse(child)
+            res.append(node['v'])
+
+        recurse(self.tree)
+        return res
+
+    def has(self, item):
+        return item in set(self.depth_first_traversal())
 
 
 t = {
@@ -54,8 +72,7 @@ t = {
 print(t)
 
 my_tree = Tree(t)
-
-depth_first = [0, 8, 1, 6, 9, 5, 7, 0, 4, 1]
+depth_first = [0, 8, 1, 6, 9, 7, 0, 4, 1, 5]
 
 breadth_first = [5, 9, 1, 8, 6, 4, 0, 1, 7, 0]
 
@@ -65,4 +82,4 @@ print('has returns true correctly', my_tree.has(7))
 print('has returns true correctly', my_tree.has(8))
 print('has returns false correctly', my_tree.has('BILL'))
 
-# END TIME:
+# END TIME: 7:01pm
