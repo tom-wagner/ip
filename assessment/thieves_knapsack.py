@@ -28,11 +28,40 @@ items = (
     ("book", 30, 10),
 )
 
-max_wt = 400
+max_wt = 65
+
+
+def get_current_max(i, j, matrix):
+    if i > 0 and j > 0:
+        return matrix[i - 1][j]
+    return dict(items=[], val=0)
+
+
+def get_remaining_weight_items_and_value(i, remaining_weight, matrix):
+    if i == 0 or remaining_weight <= 0:
+        return [], 0
+    return matrix[i - 1][remaining_weight]['items'], matrix[i - 1][remaining_weight]['val']
 
 
 def thieves(items, max_wt):
-    return 1000
+    all_weights = list(range(0, max_wt + 1))
+    matrix = [[None for _ in all_weights] for _ in items]
+
+    for i, row in enumerate(matrix):
+        for j, val in enumerate(row):
+            curr_item, curr_weight, curr_value = items[i]
+            curr_max_for_wt = get_current_max(i, j, matrix)
+            if curr_weight <= j:
+                remaining_weight = j - curr_weight
+                additional_items, additional_value = get_remaining_weight_items_and_value(i, remaining_weight, matrix)
+                if additional_value + curr_value >= curr_max_for_wt['val']:
+                    matrix[i][j] = dict(items=additional_items + [curr_item], val=additional_value + curr_value)
+                    continue
+            matrix[i][j] = curr_max_for_wt
+    return matrix[len(matrix) - 1][len(all_weights) - 1]
+
+
+
 
 
 def total_value(knapsack):
