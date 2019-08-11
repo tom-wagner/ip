@@ -1,30 +1,101 @@
-# START TIME:
+from collections import deque
+
+# START TIME: 5:53pm
+
+
+class Node:
+    def __init__(self, x):
+        self.val, self.left, self.right = x,  None, None
 
 
 class BST:
     def __init__(self, array):
-        pass
+        self.bst = None
+        for x in array:
+            self.add(x)
 
     def add(self, item):
-        pass
+        self.find_location(item, should_add=True)
+
+    def find_location(self, item, should_add=True,  should_return_branch=False):
+        if not self.bst:
+            self.bst = Node(item)
+            return
+
+        curr, branch = self.bst, []
+        while curr:
+            branch.append(curr.val)
+            if item < curr.val:
+                if curr.left:
+                    curr = curr.left
+                else:
+                    if should_add:
+                        curr.left = Node(item)
+                    break
+            elif item > curr.val:
+                if curr.right:
+                    curr = curr.right
+                else:
+                    if should_add:
+                        curr.right = Node(item)
+                    break
+            else:
+                raise Exception
+
+        return branch if should_return_branch else None
 
     def largest_smaller_than_x(self, x):
-        pass
+        branch = self.find_location(x, should_return_branch=True)
+        return max([val for val in branch if val < x])
 
     def smallest_larger_than_x(self, x):
-        pass
+        branch = self.find_location(x, should_return_branch=True)
+        return min([val for val in branch if val > x])
+
+    def depth_first_traversal(self, traversal_type='IN_ORDER'):
+        res = []
+
+        def recurse(bst):
+            if not bst:
+                return
+
+            if traversal_type == 'PRE_ORDER':
+                res.append(bst.val)
+
+            recurse(bst.left)
+
+            if traversal_type == 'IN_ORDER':
+                res.append(bst.val)
+
+            recurse(bst.right)
+
+            if traversal_type == 'POST_ORDER':
+                res.append(bst.val)
+
+        recurse(self.bst)
+        return res
 
     def in_order(self):
-        pass
+        return self.depth_first_traversal()
 
     def pre_order(self):
-        pass
+        return self.depth_first_traversal('PRE_ORDER')
 
     def post_order(self):
-        pass
+        return self.depth_first_traversal('POST_ORDER')
 
     def breadth_first(self):
-        pass
+        q, res = deque([self.bst]), []
+
+        while q:
+            curr = q.popleft()
+            res.append(curr.val)
+            if curr.left:
+                q.append(curr.left)
+            if curr.right:
+                q.append(curr.right)
+        return res
+
 
 arr = [63, 84, 57, 47, 50, 99, 59, 16, 39, 86, 2, 91, 12, 97]
 
@@ -58,4 +129,4 @@ print('largest smaller than correct', b.largest_smaller_than_x(77) == 72)
 # check that it returns proper value
 print('smallest larger than correct', b.smallest_larger_than_x(43) == 47)
 
-# END TIME: 7:57am
+# END TIME: 6:19pm
