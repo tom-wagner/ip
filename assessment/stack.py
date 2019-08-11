@@ -1,4 +1,4 @@
-# START TIME:
+# START TIME: 6:49pm
 
 
 class Stack:
@@ -6,14 +6,17 @@ class Stack:
         self.stack = []
 
     def push(self, item):
-        pass
+        self.stack.append(item)
 
     def pop(self):
-        pass
+        try:
+            return self.stack.pop()
+        except:
+            return 'EMPTY'
 
     @property
     def size(self):
-        pass
+        return len(self.stack)
 
 
 s = Stack()
@@ -41,4 +44,5 @@ print(s.pop() == 'EMPTY')
 print(s.size == 0)
 
 
-# END TIME:
+# END TIME: 6:50pm
+
