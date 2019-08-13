@@ -1,4 +1,4 @@
-# START TIME:
+# START TIME: 7:50pm
 
 from helpers.thieves_solution import knapsack01_dp, totalvalue
 
@@ -28,11 +28,27 @@ items = (
     ("book", 30, 10),
 )
 
-max_wt = 400
+max_wt = 50
+
+
+def matrix_at(i, j, matrix):
+    return (0, []) if i < 0 or j < 0 else matrix[i][j]
 
 
 def thieves(items, max_wt):
-    return 1000
+    matrix = [[None for _ in range(0, max_wt + 1)] for _ in items]
+    for i, item in enumerate(items):
+        curr_item, curr_wt, curr_val = item
+        for j in range(0, max_wt + 1):
+            prev_max_value_for_weight, prev_items_for_weight = matrix_at(i - 1, j, matrix)
+            if curr_wt <= j:
+                # matrix[i][j] = max of: 1) curr_item + val remaining space OR 2) prev_max for weight
+                remaining_space_value, other_items = matrix_at(i - 1, j - curr_wt, matrix)
+                if remaining_space_value + curr_val > prev_max_value_for_weight:
+                    matrix[i][j] = (remaining_space_value + curr_val, other_items + [curr_item])
+                    continue
+            matrix[i][j] = (prev_max_value_for_weight, prev_items_for_weight)
+    return matrix[len(items) - 1][max_wt]
 
 
 def total_value(knapsack):
@@ -51,4 +67,4 @@ print('total value my items = ')
 print('solution total value =', total_value_solution)
 print('correct?', thieves_answer == solution_bagged)
 
-# END TIME:
+# END TIME: 8:04pm
