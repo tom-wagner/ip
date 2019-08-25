@@ -1,39 +1,63 @@
 import collections
 
-# START TIME:
+# START TIME: 3:40pm
 
 
 class Graph:
     def __init__(self):
-        pass
+        self.v = set()
+        self.e = {}
 
     @property
     def size(self):
-        return ''
+        return len(self.v)
 
     def add_vertex(self, v):
-        pass
+        self.v.add(v)
+        self.e[v] = set()
 
     def remove_vertex(self, v):
-        pass
+        neighbors = self.e[v]
+        for neighbor in neighbors:
+            self.e[neighbor].remove(v)
+
+        self.v.remove(v)
+        del self.e[v]
 
     def add_edge(self, f, t):
-        pass
+        self.e[f].add(t)
+        self.e[t].add(f)
 
     def contains(self, val):
-        pass
+        return val in self.v
 
     def get_neighbors(self, val):
-        pass
+        return self.e[val]
 
     def common_neighbors(self, val_one, val_two):
-        pass
+        return (self.e[val_one] & self.e[val_two]) - {val_one, val_two}
 
     def unique_neighbors(self, val_one, val_two):
-        pass
+        return (self.e[val_one] ^ self.e[val_two]) - {val_one, val_two}
 
     def shortest_path(self, val_one, val_two):
-        pass
+        q = collections.deque([dict(v=val_one, path=[val_one], already_visited=set())])
+
+        while q:
+            curr = q.popleft()
+            path = curr['path']
+            already_visited = curr['already_visited']
+            val = curr['v']
+
+            if val == val_two:
+                return path
+
+            already_visited.add(val)
+            for edge in self.e[curr['v']]:
+                if edge not in already_visited:
+                    q.append(dict(v=edge, already_visited=already_visited, path=path + [edge]))
+
+        return 'No path'
 
 
 g = Graph()
@@ -62,4 +86,4 @@ print('3 no longer neighbor of 2', g.get_neighbors(2) == {1})
 print('3 no longer neighbor of 1', g.get_neighbors(4) == {1})
 print('no path anymore', g.shortest_path(5, 3) == 'No path')
 
-# END TIME:
+# END TIME: 4:00pm
