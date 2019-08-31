@@ -1,30 +1,88 @@
-# START TIME:
+from collections import deque
+
+# START TIME: 9:00pm
+
+
+class Node:
+    def __init__(self, x):
+        self.v = x
+        self.left = self.right = None
 
 
 class BST:
     def __init__(self, array):
-        pass
+        self.bst = Node(array[0])
+
+        for val in array[1:]:
+            self.add(val)
 
     def add(self, item):
-        pass
+        curr = self.bst
+        while True:
+            if item < curr.v:
+                if not curr.left:
+                    curr.left = Node(item)
+                    return
+                curr = curr.left
+            if item > curr.v:
+                if not curr.right:
+                    curr.right = Node(item)
+                    return
+                curr = curr.right
+            if item == curr.v:
+                raise Exception
 
     def largest_smaller_than_x(self, x):
+        # SKIPPED --> have down cold
         pass
 
     def smallest_larger_than_x(self, x):
+        # SKIPPED --> have down cold
         pass
+
+    def depth_first(self, traversal_type='IN_ORDER'):
+        res = []
+
+        def recurse(bst):
+            if traversal_type == 'PRE_ORDER':
+                res.append(bst.v)
+
+            if bst.left:
+                recurse(bst.left)
+
+            if traversal_type == 'IN_ORDER':
+                res.append(bst.v)
+
+            if bst.right:
+                recurse(bst.right)
+
+            if traversal_type == 'POST_ORDER':
+                res.append(bst.v)
+
+        recurse(self.bst)
+        return res
 
     def in_order(self):
-        pass
+        return self.depth_first()
 
     def pre_order(self):
-        pass
+        return self.depth_first('PRE_ORDER')
 
     def post_order(self):
-        pass
+        return self.depth_first('POST_ORDER')
 
     def breadth_first(self):
-        pass
+        q = deque([self.bst])
+        res = []
+        while q:
+            curr = q.popleft()
+            res.append(curr.v)
+            if curr.left:
+                q.append(curr.left)
+            if curr.right:
+                q.append(curr.right)
+        return res
+
 
 arr = [63, 84, 57, 47, 50, 99, 59, 16, 39, 86, 2, 91, 12, 97]
 
@@ -58,4 +116,4 @@ print('largest smaller than correct', b.largest_smaller_than_x(77) == 72)
 # check that it returns proper value
 print('smallest larger than correct', b.smallest_larger_than_x(43) == 47)
 
-# END TIME: 7:57am
+# END TIME: 9:14pm
