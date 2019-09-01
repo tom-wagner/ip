@@ -1,4 +1,6 @@
-# START TIME:
+from collections import deque
+
+# START TIME: 1:37pm
 
 
 class Tree:
@@ -6,13 +8,32 @@ class Tree:
         self.tree = tree
 
     def breadth_first_traversal(self):
-        pass
+        q = deque([self.tree])
+        res = []
 
+        while q:
+            curr = q.popleft()
+            res.append(curr['v'])
+            for child in curr['children']:
+                q.append(child)
+
+        return res
+
+    # BROKEN TEST
     def depth_first_traversal(self):
-        pass
+        res = []
 
-    def has(self):
-        pass
+        def recurse(tree):
+            for child in tree['children']:
+                recurse(child)
+
+            res.append(tree['v'])
+
+        recurse(self.tree)
+        return res
+
+    def has(self, x):
+        return x in set(self.breadth_first_traversal())
 
 
 t = {
