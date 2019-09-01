@@ -67,6 +67,11 @@ class LL:
 
             prev, curr = curr, curr.next
 
+    def add_to_front(self, x):
+        tmp = self.h
+        self.h = Node(x)
+        self.h.next = tmp
+
 
 ll = LL([1, 2, 3, 4, 5])
 
@@ -86,3 +91,6 @@ ll.remove(1)
 ll.remove(4)
 
 print('ll removed should not include 1 or 4', ll.as_list())
+
+
+# end time: 1:22pm
