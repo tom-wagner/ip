@@ -55,8 +55,7 @@ print(t)
 
 my_tree = Tree(t)
 
-depth_first = [0, 8, 1, 6, 9, 5, 7, 0, 4, 1]
-
+depth_first = [0, 8, 1, 6, 9, 7, 0, 4, 1, 5]
 breadth_first = [5, 9, 1, 8, 6, 4, 0, 1, 7, 0]
 
 print('DFS', my_tree.depth_first_traversal() == depth_first)
