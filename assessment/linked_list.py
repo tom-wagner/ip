@@ -1,27 +1,70 @@
+# start time 10:45pm
+
+
+class Node:
+    def __init__(self, v):
+        self.v = v
+        self.next = None
+
+
 class LL:
     def __init__(self, arr):
-        self.list = None
+        self.h = None
+        self.t = None
+        self.length = 0
+        self.init(arr)
+
+    def init(self, arr):
+        for v in arr:
+            self.add(v)
 
     @property
     def size(self):
-        pass
+        return self.length
 
     @property
     def head(self):
-        pass
+        return self.h.v
 
     @property
     def tail(self):
-        pass
+        return self.t.v
+
+    def as_list(self):
+        res = []
+        curr = self.h
+        while curr:
+            res.append(curr.v)
+            curr = curr.next
+
+        return res
 
     def contains(self, x):
-        pass
+        return x in set(self.as_list())
 
     def add(self, x):
-        pass
+        self.length += 1
+        if not self.h:
+            self.h = self.t = Node(x)
+
+        self.t.next = Node(x)
+        self.t = self.t.next
 
     def remove(self, x):
-        pass
+        if x == self.h.v:
+            self.h = self.h.next
+            self.length -= 1
+            return
+
+        prev, curr = self.h, self.h.next
+
+        while curr:
+            if curr.v == x:
+                prev.next = curr.next
+                self.length -= 1
+                return
+            prev = curr
+            curr = curr.next
 
 
 ll = LL([1, 2, 3, 4, 5])
@@ -41,4 +84,6 @@ print('ll tail = 5', ll.tail == 7)
 ll.remove(1)
 ll.remove(4)
 
-print('ll removed should not include 1 or 4', ll.list)
+print('ll removed should not include 1 or 4', ll.as_list())
+
+# end time: 10:52pm
