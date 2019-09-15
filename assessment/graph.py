@@ -1,39 +1,61 @@
 import collections
 
-# START TIME:
+# START TIME: 9:43pm
 
 
 class Graph:
     def __init__(self):
-        pass
+        self.edges = {}
+        self.vertices = set()
 
     @property
     def size(self):
-        return ''
+        return len(self.vertices)
 
     def add_vertex(self, v):
-        pass
+        self.vertices.add(v)
+        self.edges[v] = set()
 
     def remove_vertex(self, v):
-        pass
+        edges = self.edges[v]
+
+        for e in edges:
+            self.edges[e].remove(v)
+
+        del self.edges[v]
+        self.vertices.remove(v)
 
     def add_edge(self, f, t):
-        pass
+        self.edges[f].add(t)
+        self.edges[t].add(f)
 
     def contains(self, val):
-        pass
+        return val in self.vertices
 
     def get_neighbors(self, val):
-        pass
+        return self.edges[val]
 
     def common_neighbors(self, val_one, val_two):
-        pass
+        return self.edges[val_one] & self.edges[val_two] - {val_one, val_two}
 
     def unique_neighbors(self, val_one, val_two):
-        pass
+        return (self.edges[val_one] ^ self.edges[val_two]) - {val_one, val_two}
 
     def shortest_path(self, val_one, val_two):
-        pass
+        already_visited = set()
+        # (value, current_path
+        q = collections.deque([(val_one, [val_one])])
+
+        while q:
+            val, curr_path = q.popleft()
+            already_visited.add(val)
+            if val == val_two:
+                return curr_path
+            for edge in self.edges[val]:
+                if edge not in already_visited:
+                    q.append((edge, curr_path + [edge]))
+
+        return 'No path'
 
 
 g = Graph()
@@ -62,4 +84,4 @@ print('3 no longer neighbor of 2', g.get_neighbors(2) == {1})
 print('3 no longer neighbor of 1', g.get_neighbors(4) == {1})
 print('no path anymore', g.shortest_path(5, 3) == 'No path')
 
-# END TIME:
+# END TIME: 10:03pm
