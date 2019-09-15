@@ -1,19 +1,23 @@
-# START TIME:
+# START TIME: 10:53pm
 
+from collections import deque
 
 class Queue:
     def __init__(self):
-        self.queue = []
+        self.queue = deque()
 
     def enqueue(self, item):
-        pass
+        self.queue.append(item)
 
     def deque(self):
-        pass
+        try:
+            return self.queue.popleft()
+        except:
+            return 'EMPTY'
 
     @property
     def size(self):
-        pass
+        return len(self.queue)
 
 
 q = Queue()
@@ -40,4 +44,4 @@ print(q.deque() == 'EMPTY')
 
 print(q.size == 0)
 
-# END TIME:
+# END TIME: 10:54pm
