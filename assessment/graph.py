@@ -5,35 +5,56 @@ import collections
 
 class Graph:
     def __init__(self):
-        pass
+        self.e = {}
+        self.v = set()
 
     @property
     def size(self):
-        return ''
+        return len(self.v)
 
     def add_vertex(self, v):
-        pass
+        self.v.add(v)
+        self.e[v] = set()
 
     def remove_vertex(self, v):
-        pass
+        for edge in self.e[v]:
+            self.e[edge].remove(v)
+        del self.e[v]
+        self.v.remove(v)
 
     def add_edge(self, f, t):
-        pass
+        self.e[f].add(t)
+        self.e[t].add(f)
 
     def contains(self, val):
-        pass
+        return val in self.v
 
     def get_neighbors(self, val):
-        pass
+        return self.e[val]
 
     def common_neighbors(self, val_one, val_two):
-        pass
+        return self.e[val_one] & self.e[val_two] - {val_one, val_two}
 
     def unique_neighbors(self, val_one, val_two):
-        pass
+        return (self.e[val_one] ^ self.e[val_two]) - {val_one, val_two}
 
     def shortest_path(self, val_one, val_two):
-        pass
+        seen = set()
+        q = collections.deque([[val_one, []]])
+
+        while q:
+            curr_val, curr_path = q.popleft()
+            seen.add(curr_val)
+            updated_path = curr_path + [curr_val]
+
+            if curr_val == val_two:
+                return updated_path
+
+            for v in self.e[curr_val]:
+                if v not in seen:
+                    q.append([v, updated_path])
+
+        return 'No path'
 
 
 g = Graph()
@@ -62,4 +83,4 @@ print('3 no longer neighbor of 2', g.get_neighbors(2) == {1})
 print('3 no longer neighbor of 1', g.get_neighbors(4) == {1})
 print('no path anymore', g.shortest_path(5, 3) == 'No path')
 
-# END TIME:
+# END TIME: 8:53am
