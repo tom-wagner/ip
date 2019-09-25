@@ -1,5 +1,6 @@
 from copy import copy
 
+
 class Spreadsheet:
     def __init__(self, rows: int, columns: int):
         self.sheet = [['' for _ in range(0, columns)] for _ in range(0, rows)]

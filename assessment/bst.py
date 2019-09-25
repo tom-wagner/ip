@@ -26,6 +26,7 @@ class BST:
     def breadth_first(self):
         pass
 
+
 arr = [63, 84, 57, 47, 50, 99, 59, 16, 39, 86, 2, 91, 12, 97]
 
 b = BST(arr)
